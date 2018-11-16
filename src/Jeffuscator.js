@@ -49,14 +49,11 @@ module.exports = class Jeffuscator
 
             this.files = [path]
         } else {
-            dirWalk(path).forEach((file) => {
-                if(
-                    mime.lookup(file) === 'application/javascript'
-                    && !/jeff.js$/.test(file)
-                ) {
+            dirWalk(path)
+                .filter((file) => mime.lookup(file) === 'application/javascript' && !/jeff.js$/.test(file))
+                .forEach((file) => {
                     this.files.push(file)
-                }
-            })
+                })
 
             // should an error be thrown if there are no valid files?
         }
