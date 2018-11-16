@@ -13,10 +13,13 @@ program
             console.error('The input option is required.')
             process.exit(1)
         }
-
-        if(program.outputPath) {
-            var output = path.join(process.cwd(), program.outputPath)
+    
+        if(!program.outputPath) {
+            console.error('The input option is required.')
+            process.exit(1)
         }
+
+        var output = path.join(process.cwd(), program.outputPath)
 
         new Jeffuscator(path.join(process.cwd(), program.inputPath))
             .processFiles(output)
